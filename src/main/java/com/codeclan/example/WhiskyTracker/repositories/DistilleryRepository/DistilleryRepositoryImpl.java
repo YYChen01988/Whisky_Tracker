@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DistilleryRepositoryImpl implements DistilleryRepositoryCustom {
@@ -32,8 +33,33 @@ public class DistilleryRepositoryImpl implements DistilleryRepositoryCustom {
         }
 
         return distilleries;
-
     }
+
+    @Transactional
+    public List<Distillery> getDistilleriesHasWhiskyFromCertainAge(int age){
+
+        List<Whisky> whiskies = null;
+
+        Session session = entityManager.unwrap(Session.class);
+        try {
+            Criteria cr = session.createCriteria(Whisky.class);
+            cr.add(Restrictions.gt("age", age));
+            whiskies = cr.list();
+        } catch (HibernateException e) {
+            e.printStackTrace();
+        }
+
+        List<Distillery> distileries = new ArrayList<>();
+        for(Whisky whisky :whiskies){
+            distileries.add(whisky.getDistillery());
+        }
+
+        return distileries;
+    }
+
+
+
+
 
 
 }
