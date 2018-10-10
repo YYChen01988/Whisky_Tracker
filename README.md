@@ -1,7 +1,5 @@
 # Whisky_Tracker
 
-# Lab + Homework
-
 Given the basic code for classes and JpaRepositories for a whisky tracker, your task for this lab + homework is to complete the custom queries and connected them to appropriate RESTful endpoints.
 
 
