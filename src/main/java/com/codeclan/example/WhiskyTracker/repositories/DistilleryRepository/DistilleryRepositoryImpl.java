@@ -31,12 +31,12 @@ public class DistilleryRepositoryImpl implements DistilleryRepositoryCustom {
         } finally {
             session.close();
         }
-
         return distilleries;
     }
 
     @Transactional
     public List<Distillery> getDistilleriesHasWhiskyFromCertainAge(int age){
+
 
         List<Whisky> whiskies = null;
 
@@ -56,7 +56,6 @@ public class DistilleryRepositoryImpl implements DistilleryRepositoryCustom {
 
         return distileries;
     }
-
 
 
 
